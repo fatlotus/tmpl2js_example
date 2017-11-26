@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	http.ListenAndServe(":8080", &tmpl2js_example.Counter{})
+	http.ListenAndServe(":8080", &exampletmpl2js.Counter{})
 }

@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"sync"
+	"time"
 )
 
 type Counter struct {
@@ -24,6 +25,7 @@ func (c *Counter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "POST" {
 		c.Clicks += 1
+		time.Sleep(1 * time.Second)
 	}
 
 	WriteBody(w, r, tmpl, c)

@@ -6,20 +6,29 @@ import (
 	"github.com/tebeka/selenium"
 	"net"
 	"net/http"
-	// "os"
 	"testing"
+	"time"
 )
 
 func ExpectText(t *testing.T, wd selenium.WebDriver, expected string) {
-	body, err := wd.FindElement(selenium.ByCSSSelector, "body")
-	if err != nil {
-		t.Fatal(err)
-	}
-	actual, err := body.Text()
-	if err != nil {
-		t.Fatal(err)
-	} else if actual != expected {
-		t.Fatalf("Expected:\n%s\nActual:\n%s", expected, actual)
+	attempts := 0
+	for {
+		body, err := wd.FindElement(selenium.ByCSSSelector, "body")
+		if err != nil {
+			t.Fatal(err)
+		}
+		actual, err := body.Text()
+		if err != nil {
+			t.Fatal(err)
+		} else if actual == expected {
+			return
+		} else if attempts > 20 {
+			t.Fatalf("Expected:\n%s\nActual:\n%s", expected, actual)
+		} else {
+			time.Sleep(100 * time.Millisecond)
+			attempts += 1
+			continue
+		}
 	}
 }
 
