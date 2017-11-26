@@ -65,7 +65,7 @@ func TestExampleApp(t *testing.T) {
 	defer wd.Quit()
 
 	// Load the basic page
-	if err := wd.Get(fmt.Sprintf("http://%s", listener.Addr())); err != nil {
+	if err := wd.Get(fmt.Sprintf("http://localhost:%d", listener.Addr().(*net.TCPAddr).Port)); err != nil {
 		t.Fatal(err)
 	}
 
