@@ -6,9 +6,9 @@ jobs:
         environment:
           CHROME_BIN: "/usr/bin/google-chrome"
 
-    working_directory: /go/src/github.com/fatlotus/tmpl2js
+    working_directory: /go/src/github.com/fatlotus/tmpl2js_example
     steps:
       - checkout
       - run: go get -v -t -d ./...
-      - run: go test -race -coverprofile=coverage.txt -v . --coverpkg=github.com/fatlotus/tmpl2js,github.com/fatlotus/tmpl2js/ast
+      - run: go test -race -coverprofile=coverage.txt -v .
       - run: bash <(curl -s https://codecov.io/bash)

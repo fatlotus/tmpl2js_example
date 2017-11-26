@@ -1,8 +1,8 @@
-package tmpl2js_example_test
+package exampletmpl2js_test
 
 import (
 	"fmt"
-	"github.com/fatlotus/tmpl2js_example"
+	. "github.com/fatlotus/tmpl2js_example"
 	"github.com/tebeka/selenium"
 	"net"
 	"net/http"
@@ -42,7 +42,7 @@ func TestExampleApp(t *testing.T) {
 	defer listener.Close()
 
 	// Start running the tests
-	server := &http.Server{Handler: &tmpl2js_example.Counter{}}
+	server := &http.Server{Handler: &Counter{}}
 	go func() {
 		server.Serve(listener)
 	}()

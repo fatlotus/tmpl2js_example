@@ -1,4 +1,4 @@
-package tmpl2js_example
+package exampletmpl2js
 
 import (
 	"html/template"
